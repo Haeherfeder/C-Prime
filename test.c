@@ -25,6 +25,11 @@ int main()
 	is_right(4,f);
 	is_right(5,t);
 	is_right(6,f);
+	is_right(341,f);
+	is_right(561,f);
+	is_right(271441,f);
+	is_right(2251,t);
+	
 
 	is_next_right(-2,2);
 	is_next_right(-3,2);
@@ -46,7 +51,13 @@ int main()
 	is_Num(2,3);
 	is_Num(3,5);
 	is_Num(5,11);
-
+	is_Num(100,541);
+	printf("unsafe Tests Startet\n");	
+	is_right(25326001,f);
+	is_right(3825123056546413051,f);
+	is_Num(0,2);
+	is_Num(-1,2);
+	printf("Test finished\n");
 	return 0;
 }
 
@@ -98,10 +109,10 @@ void is_Num(int n,int p){
 	f = primeNumMain(2,argv);
 	if(f==p)
 	{
-		printf("%i richtig",n);
+		printf("%i richtig\n",n);
 	}
 	else
 	{
-		printf("%i falsch",n);
+		printf("%i falsch\n",n);
 	}
 }
