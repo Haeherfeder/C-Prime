@@ -1,12 +1,12 @@
-#include "primenum2.h"
+#include "nth_prime_prog.h"
 #include "prime.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-void is_right(int p,int r);
-void is_next_right(int p,int np);
-void is_next_right_unsafe(int p,int np);
-void is_Num(int p,int n);
+void is_prime_test(int p,int r);
+void is_next_test(int p,int np);
+void is_next_unsafe_test(int p,int np);
+void nth_prime_prog_test(int n,int p);
 
 int main()
 {
@@ -16,52 +16,51 @@ int main()
 	printf("Test startet\n");
 	do
 	{
-		is_right(primeTest,f);
+		is_prime_test(primeTest,f);
 		primeTest++;
 	}
-	while(primeTest<2);
-	is_right(2,t);
-	is_right(3,t);
-	is_right(4,f);
-	is_right(5,t);
-	is_right(6,f);
-	is_right(341,f);
-	is_right(561,f);
-	is_right(271441,f);
-	is_right(2251,t);
-	
+	while (primeTest<2);
+	is_prime_test(2,t);
+	is_prime_test(3,t);
+	is_prime_test(4,f);
+	is_prime_test(5,t);
+	is_prime_test(6,f);
+	is_prime_test(341,f);
+	is_prime_test(561,f);
+	is_prime_test(271441,f);
+	is_prime_test(2251,t);
 
-	is_next_right(-2,2);
-	is_next_right(-3,2);
-	is_next_right(-5,2);
-	is_next_right(2,3);
-	is_next_right(1,2);
-	is_next_right(3,5);
-	is_next_right(4,5);
-	is_next_right(1997,1999);
-	is_next_right(1998,1999);
+	is_next_test(-2,2);
+	is_next_test(-3,2);
+	is_next_test(-5,2);
+	is_next_test(2,3);
+	is_next_test(1,2);
+	is_next_test(3,5);
+	is_next_test(4,5);
+	is_next_test(1997,1999);
+	is_next_test(1998,1999);
 
-	is_next_right_unsafe(7,11);
-	is_next_right_unsafe(3,5);
-	is_next_right_unsafe(5,7);
-	is_next_right_unsafe(1997,1999);
-	is_next_right_unsafe(1993,1997);
+	is_next_unsafe_test(7,11);
+	is_next_unsafe_test(3,5);
+	is_next_unsafe_test(5,7);
+	is_next_unsafe_test(1997,1999);
+	is_next_unsafe_test(1993,1997);
 
-	is_Num(1,2);
-	is_Num(2,3);
-	is_Num(3,5);
-	is_Num(5,11);
-	is_Num(100,541);
+	nth_prime_prog_test(1,2);
+	nth_prime_prog_test(2,3);
+	nth_prime_prog_test(3,5);
+	nth_prime_prog_test(5,11);
+	nth_prime_prog_test(100,541);
 	printf("unsafe Tests Startet\n");	
-	is_right(25326001,f);
-	is_right(3825123056546413051,f);
-	is_Num(0,2);
-	is_Num(-1,2);
+	is_prime_test(25326001,f);
+	is_prime_test(2147483647,f);
+	nth_prime_prog_test(0,2);
+	nth_prime_prog_test(-1,2);
 	printf("Test finished\n");
 	return 0;
 }
 
-void is_right(int p,int r)
+void is_prime_test(int p,int r)
 {
 	if(r==is_prime(p))
 	{
@@ -73,7 +72,7 @@ void is_right(int p,int r)
 	}
 }
 
-void is_next_right(int p,int np)
+void is_next_test(int p,int np)
 {
 	int nextp = next_prime(p);
 	if(np==nextp)
@@ -87,7 +86,7 @@ void is_next_right(int p,int np)
 	}
 }
 
-void is_next_right_unsafe(int p,int np)
+void is_next_unsafe_test(int p,int np)
 {
 	int nextp = next_prime(p);
 	if(np==nextp)
@@ -100,19 +99,19 @@ void is_next_right_unsafe(int p,int np)
 		printf("next zu %i falsch als %i statt %i erkannt\n",p,nextp,np);
 	}
 }
-void is_Num(int n,int p){
+void nth_prime_prog_test(int n,int p){
 	char nS [33];
 	char *argv[2];
-	int f;
+	int nth_prime;
 	sprintf(nS,"%i",n);
 	argv[1]=nS;
-	f = primeNumMain(2,argv);
-	if(f==p)
+	nth_prime = nth_prime_prog(2,argv);
+	if (nth_prime==p)
 	{
 		printf("%i richtig\n",n);
 	}
 	else
 	{
-		printf("%i falsch\n",n);
+		printf("%i falsch als %i \n",n,nth_prime);
 	}
 }
